@@ -14,7 +14,7 @@ if user_question:
             client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
             response = client.chat.completions.create(
-                model="gpt-4",
+                model=model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "너는 한국 법률 전문가야. 질문을 분석해서 관련된 법 조항이나 범죄 유형을 제시해줘."},
                     {"role": "user", "content": user_question}
