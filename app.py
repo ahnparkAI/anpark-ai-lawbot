@@ -1,6 +1,7 @@
-import streamlit as st
 import openai
+import streamlit as st
 
+# OpenAI API Key 가져오기
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 st.set_page_config(page_title="안팍 법률 비서", page_icon="⚖️")
@@ -12,14 +13,13 @@ user_question = st.text_input("📄 법률 질문을 입력하세요:")
 if user_question:
     with st.spinner("답변 생성 중..."):
         try:
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "너는 한국 법률 전문가야. 질문을 분석해서 관련된 법 조항이나 법적 유형을 제시해줘."},
-                    {"role": "user", "content": user_question}
-                ]
+            # 최신 API 방식으로 응답 받기
+            response = openai.Completion.create(
+                model="gpt-3.5-turbo",  # 최신 모델 사용
+                prompt=user_question,  # 사용자 질문을 프롬프트로 사용
+                max_tokens=100
             )
-            answer = response.choices[0].message.content
+            answer = response['choices'][0]['text']
             st.success("✅ 답변")
             st.write(answer)
         except Exception as e:
