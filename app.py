@@ -24,5 +24,3 @@ if user_question:
             st.write(answer)
         except Exception as e:
             st.error(f"❌ 오류 발생: {e}")
-else:
-    st.info("왼쪽 상단 톱니바퀴 → Secrets에 OpenAI API 키를 먼저 설정해 주세요.")
