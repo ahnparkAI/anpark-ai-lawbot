@@ -13,13 +13,13 @@ if user_question:
         try:
             client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-           response = client.chat.completions.create(
-    model="gpt-3.5-turbo",
-    messages=[
-        {"role": "system", "content": "너는 한국 법률 전문가야. 질문을 분석해서 관련된 법 조항이나 범죄 유형을 제시해줘."},
-        {"role": "user", "content": user_question}
-    ]
-)
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "너는 한국 법률 전문가야. 질문을 분석해서 관련된 법 조항이나 범죄 유형을 제시해줘."},
+                    {"role": "user", "content": user_question}
+                ]
+            )
 
             answer = response.choices[0].message.content
             st.markdown("### 📘 답변")
